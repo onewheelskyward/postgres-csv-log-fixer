@@ -11,7 +11,7 @@ parsed_queries = []
 File.open(ARGV[0]).each_line do |line|
   line.gsub! /\n/, ''
   # puts line
-  if line.match(/^\s+/)
+  if line.match(/^(\s+|;)/)
     prev_line = prev_line.to_s + line
     next
   elsif prev_line
