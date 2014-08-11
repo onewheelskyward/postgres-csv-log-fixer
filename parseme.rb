@@ -21,11 +21,12 @@ File.open(ARGV[0]).each_line do |line|
     unless match[0].nil?
       unless data[14].nil?
         param_matches = data[14].scan(/(\$\d+) = '(.*?)'/)
+        parsed_query = match[0]
         param_matches.each do |key, value|
-          parsed_query = match[0].sub key, "'#{value}'"
-          parsed_queries.push parsed_query
+          parsed_query = parsed_query.sub key, "'#{value}'"
         end
       end
+      parsed_queries.push parsed_query
     end
   end
   prev_line = line
